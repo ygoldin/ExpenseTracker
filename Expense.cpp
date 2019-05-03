@@ -1,3 +1,5 @@
+// Created by Yael Goldin
+
 #include <string>
 #include "./Expense.h"
 

@@ -1,3 +1,5 @@
+// Created by Yael Goldin
+
 #ifndef EXPENSETRACKER_EXPENSE_H
 #define EXPENSETRACKER_EXPENSE_H
 
