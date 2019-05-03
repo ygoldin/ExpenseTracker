@@ -1,7 +1,7 @@
 // Created by Yael Goldin
 
 #include <string>
-#include "./Expense.h"
+#include "Expense.h"
 
 using namespace std;
 
