@@ -1,0 +1,12 @@
+# Compiler output
+*.o
+*.so
+*.a
+
+# Mac files
+.DS_Store
+
+# CLion files
+.idea/
+cmake-build-debug/
+CMakeLists.txt
