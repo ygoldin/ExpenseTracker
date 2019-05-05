@@ -26,8 +26,8 @@ Expense::~Expense() {
 }
 
 void Expense::Participants(set<string> *p) const {
-  for (auto it = participants_->begin(); it != participants_->end(); ++it) {
-    p->insert(*it);
+  for (auto it : *participants_) {
+    p->insert(it);
   }
 }
 
