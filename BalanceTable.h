@@ -15,7 +15,7 @@ class BalanceTable {
     ~BalanceTable();
 
     // either creates a new balance with this person, or updates it by adding the given amount
-    // positive balance means the given person is owed money
+    // positive balance means the given person owes money to the table owner
     void UpdateBalance(string person, double amount);
 
   private:
