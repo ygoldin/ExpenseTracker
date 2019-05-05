@@ -4,6 +4,7 @@
 #include <iostream>
 #include <sstream>
 #include <unordered_set>
+#include <set>
 #include "Expense.h"
 #include "Utils.h"
 
@@ -24,6 +25,12 @@ Expense::~Expense() {
   delete participants_;
 }
 
+void Expense::Participants(set<string> *p) const {
+  for (auto it = participants_->begin(); it != participants_->end(); ++it) {
+    p->insert(*it);
+  }
+}
+
 double Expense::IndividualCost() const {
   int size = participants_->size();
   if (payer_involved_) {
@@ -34,7 +41,9 @@ double Expense::IndividualCost() const {
 
 ostream &operator<<(ostream &out, const Expense &a) {
   out << a.Payer() << " paid " << a.Cost() << ". ";
-  print(out, a.Participants());
+  set<string> participants;
+  a.Participants(&participants);
+  print(out, participants);
   out << " owe " << a.IndividualCost() << " each";
   return out;
 }

@@ -6,18 +6,12 @@
 using namespace std;
 
 int main() {
-  unordered_set<string> people;
-  people.insert("A");
-  people.insert("B");
-  people.insert("C");
-  people.insert("D");
+  unordered_set<string> people = {"A", "B", "C", "D"};
   Group g(people);
 
-  set<string> participants;
-  participants.insert("A");
-  participants.insert("B");
-  participants.insert("C");
-  g.AddExpense(4, "D", participants, true);
+  set<string> participants = {"A", "B", "C"};
+  bool b = g.AddExpense(4, "D", participants, true);
+  cout << b << endl;
 
   g.Expenses(cout);
   return 0;

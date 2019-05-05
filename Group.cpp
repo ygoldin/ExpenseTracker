@@ -52,11 +52,11 @@ bool Group::AddExpense(double cost, string payer, set<string> &participants, boo
   expenses_->push_back(exp);
 
   double individualCost = exp.IndividualCost();
-  InitializeBalanceIfNeeded(payer);
-  for (string s : participants) {
-    InitializeBalanceIfNeeded(s);
-    UpdateBalance(payer, s, individualCost);
-  }
+//  InitializeBalanceIfNeeded(payer);
+//  for (string s : participants) {
+//    InitializeBalanceIfNeeded(s);
+//    UpdateBalance(payer, s, individualCost);
+//  }
   return true;
 }
 
@@ -67,7 +67,8 @@ bool Group::RemoveExpense(int id) {
   Expense exp = expenses_->at(id - 1);
   expenses_->erase(expenses_->begin() + id - 1);
   double individualCost = exp.IndividualCost();
-  set<string> participants = exp.Participants();
+  set<string> participants;
+  exp.Participants(&participants);
   string payer = exp.Payer();
   for (string s : participants) {
     UpdateBalance(s, payer, individualCost);
@@ -77,7 +78,7 @@ bool Group::RemoveExpense(int id) {
 
 void Group::Expenses(ostream &out) {
   if (expenses_->empty()) {
-    out << "No expenses";
+    out << "No expenses" << endl;
   } else {
     for (int i = 0; i < expenses_->size(); i++) {
       out << i + 1 << ": " << expenses_->at(i) << endl;

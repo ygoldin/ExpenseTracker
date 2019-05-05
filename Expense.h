@@ -24,7 +24,7 @@ class Expense {
 
     double Cost() const { return cost_;}
     string Payer() const { return payer_; }
-    set<string> Participants() const { return *participants_; }
+    void Participants(set<string> *p) const;
 
     // returns how much each person's cost was in the expense
     double IndividualCost() const;
