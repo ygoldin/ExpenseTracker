@@ -1,19 +1,23 @@
 // Created by Yael Goldin
 
 #include <string>
+#include <iostream>
+#include <sstream>
+#include <unordered_set>
 #include "Expense.h"
+#include "Utils.h"
 
 using namespace std;
 
-Expense::Expense(double cost, string payer, unordered_set<string> &participants)
+Expense::Expense(double cost, string payer, set<string> &participants)
     : Expense(cost, payer, participants, true) { }
 
-Expense::Expense(double cost, string payer, unordered_set<string> &participants,
+Expense::Expense(double cost, string payer, set<string> &participants,
                  bool payerInvolved) {
   cost_ = cost;
   payer_ = payer;
   payer_involved_ = payerInvolved;
-  participants_ = new unordered_set<string>();
+  participants_ = new set<string>();
   for (string p : participants) {
     participants_->insert(p);
   }
@@ -29,4 +33,11 @@ double Expense::IndividualCost() const {
     size++;
   }
   return cost_ / size;
+}
+
+ostream &operator<<(ostream &out, const Expense &a) {
+  out << a.Payer() << " paid " << a.Cost() << ". ";
+  print(out, a.Participants());
+  out << " owe " << a.IndividualCost();
+  return out;
 }
