@@ -38,7 +38,7 @@ bool Group::AddMember(string member) {
 }
 
 bool Group::AddExpense(double cost, string payer, set<string> &participants, bool payerInvolved) {
-  if (!MemberExists(payer) || participants.size() == 0) {
+  if (!MemberExists(payer) || participants.size() == 0 || cost <= 0) {
     return false;
   }
   for (string p : participants) {
