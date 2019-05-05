@@ -10,8 +10,8 @@ int main() {
   Group g(people);
 
   set<string> participants = {"A", "B", "C"};
-  bool b = g.AddExpense(4, "D", participants, true);
-  cout << b << endl;
+  bool expenseAdded = g.AddExpense(4, "D", participants, true);
+  assert(expenseAdded);
 
   g.Expenses(cout);
   return 0;
