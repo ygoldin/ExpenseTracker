@@ -104,7 +104,7 @@ void Group::InitializeBalanceIfNeeded(string member) {
   }
 }
 
-void Group::UpdateBalance(string s1, string s2, double val) {
-  balances_->at(s1).UpdateBalance(s2, val);
-  balances_->at(s2).UpdateBalance(s1, -val);
+void Group::UpdateBalance(string receiver, string debtor, double val) {
+  balances_->at(receiver).UpdateBalance(debtor, val);
+  balances_->at(debtor).UpdateBalance(receiver, -val);
 }

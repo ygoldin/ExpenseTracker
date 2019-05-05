@@ -44,7 +44,7 @@ class Group {
     void Setup();
     bool MemberExists(string member);
     void InitializeBalanceIfNeeded(string member);  // creates balance tables if needed
-    void UpdateBalance(string s1, string s2, double val);  // s2 owes s1 +val, s1 owes s2 -val
+    void UpdateBalance(string receiver, string debtor, double val);
 };
 
 
