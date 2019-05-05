@@ -13,7 +13,7 @@ BalanceTable::~BalanceTable() {
 }
 
 void BalanceTable::UpdateBalance(string person, double amount) {
-  if (balances_->count(person)) {
+  if (!balances_->count(person)) {
     balances_->insert({person, amount});
   } else {
     double total = balances_->at(person) + amount;

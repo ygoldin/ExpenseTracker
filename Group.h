@@ -39,7 +39,7 @@ class Group {
   private:
     unordered_set<string>* members_;
     vector<Expense>* expenses_;
-    unordered_map<string, BalanceTable>* balances_;
+    unordered_map<string, BalanceTable*>* balances_;
 
     void Setup();
     bool MemberExists(string member);

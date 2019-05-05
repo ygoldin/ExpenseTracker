@@ -27,6 +27,9 @@ Group::Group(unordered_set<string> &members) {
 Group::~Group() {
   delete members_;
   delete expenses_;
+  for (auto it = balances_->begin(); it != balances_->end(); ++it) {
+    delete it->second;
+  }
   delete balances_;
 }
 
@@ -52,11 +55,11 @@ bool Group::AddExpense(double cost, string payer, set<string> &participants, boo
   expenses_->push_back(exp);
 
   double individualCost = exp.IndividualCost();
-//  InitializeBalanceIfNeeded(payer);
-//  for (string s : participants) {
-//    InitializeBalanceIfNeeded(s);
-//    UpdateBalance(payer, s, individualCost);
-//  }
+  InitializeBalanceIfNeeded(payer);
+  for (string s : participants) {
+    InitializeBalanceIfNeeded(s);
+    UpdateBalance(payer, s, individualCost);
+  }
   return true;
 }
 
@@ -91,7 +94,7 @@ void Group::Expenses(ostream &out) {
 void Group::Setup() {
   members_ = new unordered_set<string>();
   expenses_ = new vector<Expense>();
-  balances_ = new unordered_map<string, BalanceTable>();
+  balances_ = new unordered_map<string, BalanceTable*>();
 }
 
 bool Group::MemberExists(string member) {
@@ -99,13 +102,13 @@ bool Group::MemberExists(string member) {
 }
 
 void Group::InitializeBalanceIfNeeded(string member) {
-  if (balances_->count(member)) {
-    BalanceTable tbl;
+  if (!balances_->count(member)) {
+    BalanceTable *tbl = new BalanceTable();
     balances_->insert({member, tbl});
   }
 }
 
 void Group::UpdateBalance(string receiver, string debtor, double val) {
-  balances_->at(receiver).UpdateBalance(debtor, val);
-  balances_->at(debtor).UpdateBalance(receiver, -val);
+  balances_->at(receiver)->UpdateBalance(debtor, val);
+  balances_->at(debtor)->UpdateBalance(receiver, -val);
 }
