@@ -4,6 +4,8 @@
 #include <unordered_set>
 #include <unordered_map>
 #include <vector>
+#include <iostream>
+#include <sstream>
 #include "BalanceTable.h"
 #include "Expense.h"
 #include "Group.h"
@@ -70,6 +72,16 @@ bool Group::RemoveExpense(int id) {
     UpdateBalance(s, payer, individualCost);
   }
   return true;
+}
+
+void Group::Expenses(ostream &out) {
+  if (expenses_->size() == 0) {
+    out << "No expenses";
+  } else {
+    for (int i = 0; i < expenses_->size(); i++) {
+      out << i + 1 << ": " << expenses_->at(i) << endl;
+    }
+  }
 }
 
 /* helpers */

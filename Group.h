@@ -8,6 +8,8 @@
 #include <set>
 #include <unordered_map>
 #include <vector>
+#include <iostream>
+#include <sstream>
 #include "BalanceTable.h"
 #include "Expense.h"
 
@@ -30,6 +32,9 @@ class Group {
     // removes the expense from the group
     // returns true if expense existed
     bool RemoveExpense(int id);
+
+    // prints all expenses to the given stream
+    void Expenses(ostream &out);
 
   private:
     unordered_set<string>* members_;

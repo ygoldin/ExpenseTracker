@@ -38,6 +38,6 @@ double Expense::IndividualCost() const {
 ostream &operator<<(ostream &out, const Expense &a) {
   out << a.Payer() << " paid " << a.Cost() << ". ";
   print(out, a.Participants());
-  out << " owe " << a.IndividualCost();
+  out << " owe " << a.IndividualCost() << " each";
   return out;
 }
