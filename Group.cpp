@@ -35,8 +35,7 @@ bool Group::AddMember(string member) {
   return true;
 }
 
-bool Group::AddExpense(double cost, string payer, unordered_set<string> &participants,
-                bool payerInvolved) {
+bool Group::AddExpense(double cost, string payer, set<string> &participants, bool payerInvolved) {
   if (!MemberExists(payer) || participants.size() == 0) {
     return false;
   }
@@ -65,7 +64,7 @@ bool Group::RemoveExpense(int id) {
   Expense exp = expenses_->at(id - 1);
   expenses_->erase(expenses_->begin() + id - 1);
   double individualCost = exp.IndividualCost();
-  unordered_set<string> participants = exp.Participants();
+  set<string> participants = exp.Participants();
   string payer = exp.Payer();
   for (string s : participants) {
     UpdateBalance(s, payer, individualCost);
