@@ -39,7 +39,7 @@ bool Group::AddMember(string member) {
 }
 
 bool Group::AddExpense(double cost, string payer, set<string> &participants, bool payerInvolved) {
-  if (!MemberExists(payer) || participants.size() == 0 || cost <= 0) {
+  if (!MemberExists(payer) || participants.empty() || cost <= 0) {
     return false;
   }
   for (string p : participants) {
@@ -76,7 +76,7 @@ bool Group::RemoveExpense(int id) {
 }
 
 void Group::Expenses(ostream &out) {
-  if (expenses_->size() == 0) {
+  if (expenses_->empty()) {
     out << "No expenses";
   } else {
     for (int i = 0; i < expenses_->size(); i++) {

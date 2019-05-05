@@ -17,10 +17,7 @@ Expense::Expense(double cost, string payer, set<string> &participants,
   cost_ = cost;
   payer_ = payer;
   payer_involved_ = payerInvolved;
-  participants_ = new set<string>();
-  for (string p : participants) {
-    participants_->insert(p);
-  }
+  participants_ = new set<string>(participants);
 }
 
 Expense::~Expense() {

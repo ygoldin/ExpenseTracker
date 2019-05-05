@@ -10,12 +10,14 @@ using namespace std;
 
 void print(ostream &out, const set<string> &s) {
   out << "[";
-  auto it = s.begin();
-  out << *it;
-  it++;
-  while (it != s.end()) {
-    out << "," << *it;
+  if (!s.empty()) {
+    auto it = s.begin();
+    out << *it;
     it++;
+    while (it != s.end()) {
+      out << "," << *it;
+      it++;
+    }
   }
   out << "]";
 }
