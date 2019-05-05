@@ -5,8 +5,9 @@
 
 #include <string>
 #include <unordered_set>
+#include <unordered_map>
 #include <vector>
-#include "Balance.h"
+#include "BalanceTable.h"
 #include "Expense.h"
 
 using namespace std;
@@ -17,14 +18,19 @@ class Group {
     Group(unordered_set<string> &members);
     ~Group();
 
-    void AddMember(string member);
+    bool AddMember(string member);
+
+    bool AddExpense(double cost, string payer, unordered_set<string> &participants,
+        bool payerInvolved);
 
   private:
     unordered_set<string>* members_;
     vector<Expense>* expenses_;
-    unordered_set<Balance>* balances_;
+    unordered_map<string, BalanceTable>* balances_;
 
     void Setup();
+    bool MemberExists(string member);
+    void InitializeBalanceIfNeeded(string member);
 };
 
 
