@@ -7,9 +7,9 @@
 #include <vector>
 #include <iostream>
 #include <sstream>
-#include "BalanceTable.h"
-#include "Expense.h"
-#include "Group.h"
+#include "../include/BalanceTable.h"
+#include "../include/Expense.h"
+#include "../include/Group.h"
 
 using namespace std;
 

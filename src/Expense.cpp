@@ -5,8 +5,8 @@
 #include <sstream>
 #include <unordered_set>
 #include <set>
-#include "Expense.h"
-#include "Utils.h"
+#include "../include/Expense.h"
+#include "../include/Utils.h"
 
 using namespace std;
 
