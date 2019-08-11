@@ -1,0 +1,14 @@
+cmake_minimum_required(VERSION 3.14)
+project(ExpenseTracker)
+
+set(CMAKE_CXX_STANDARD 11)
+
+add_executable(ExpenseTracker
+    src/BalanceTable.cpp
+    src/Expense.cpp
+    src/Group.cpp
+    src/Utils.cpp
+    include/BalanceTable.h
+    include/Expense.h
+    include/Group.h
+    include/Utils.h)

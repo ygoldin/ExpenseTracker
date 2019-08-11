@@ -9,4 +9,6 @@
 # CLion files
 .idea/
 cmake-build-debug/
-CMakeLists.txt
+
+# builds
+build*/
