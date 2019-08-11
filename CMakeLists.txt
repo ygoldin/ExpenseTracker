@@ -4,6 +4,7 @@ project(ExpenseTracker)
 set(CMAKE_CXX_STANDARD 11)
 
 add_executable(ExpenseTracker
+    main.cpp
     src/BalanceTable.cpp
     src/Expense.cpp
     src/Group.cpp
