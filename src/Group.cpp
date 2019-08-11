@@ -51,8 +51,7 @@ namespace ExpenseTracker {
       Expense exp = expenses_->at(id - 1);
       expenses_->erase(expenses_->begin() + id - 1);
       double individualCost = exp.IndividualCost();
-      std::set<std::string> participants;
-      exp.Participants(&participants);
+      auto participants = exp.Participants();
       std::string payer = exp.Payer();
       for (std::string s : participants) {
         UpdateBalance(s, payer, individualCost);

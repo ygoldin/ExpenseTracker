@@ -14,12 +14,6 @@ namespace ExpenseTracker {
       m_participants = std::make_shared<std::set<std::string>>(participants);
     }
 
-    void Expense::Participants(std::set<std::string> *p) const {
-      for (auto it : *m_participants) {
-        p->insert(it);
-      }
-    }
-
     double Expense::IndividualCost() const {
       int size = m_participants->size();
       if (m_payerInvolved) {
@@ -28,10 +22,13 @@ namespace ExpenseTracker {
       return m_cost / size;
     }
 
+    std::set<std::string> Expense::Participants() const {
+      return std::set<std::string>(*m_participants);
+    }
+
     std::ostream &operator<<(std::ostream &out, const Expense &a) {
       out << a.Payer() << " paid " << a.Cost() << ". ";
-      std::set<std::string> participants;
-      a.Participants(&participants);
+      auto participants = a.Participants();
       print(out, participants);
       out << " owe " << a.IndividualCost() << " each";
       return out;
