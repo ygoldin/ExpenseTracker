@@ -16,8 +16,6 @@ namespace ExpenseTracker {
 
         Group(std::unordered_set<std::string> &members);
 
-        ~Group();
-
         // adds member to group, returns true if new member
         bool AddMember(std::string member);
 
@@ -37,7 +35,7 @@ namespace ExpenseTracker {
     private:
         std::shared_ptr<std::unordered_set<std::string>> members_;
         std::shared_ptr<std::vector<Expense>> expenses_;
-        std::shared_ptr<std::unordered_map<std::string, BalanceTable *>> balances_;
+        std::shared_ptr<std::unordered_map<std::string, std::unique_ptr<BalanceTable>>> balances_;
 
         void Setup();
 
