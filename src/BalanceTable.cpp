@@ -16,4 +16,12 @@ namespace ExpenseTracker {
         m_balances->insert({person, total});
       }
     }
+
+    double BalanceTable::GetBalance(std::string person) const {
+      if (m_balances->count(person)) {
+        return m_balances->at(person);
+      } else {
+        return 0;
+      }
+    }
 } // namespace ExpenseTracker

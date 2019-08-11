@@ -14,9 +14,12 @@ namespace ExpenseTracker {
     public:
         BalanceTable();
 
-        // either creates a new balance with this person, or updates it by adding the given amount
-        // positive balance means the given person owes money to the table owner
+        // Either creates a new balance with this person, or updates it by adding the given amount
         void UpdateBalance(std::string person, double amount);
+
+        // Returns the current balance with the given person
+        // A positive balance means the given person owes money to the table owner
+        double GetBalance(std::string person) const;
 
     private:
         std::shared_ptr<std::unordered_map<std::string, double>> m_balances;
