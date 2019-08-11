@@ -2,7 +2,7 @@
 
 #include <unordered_map>
 #include <string>
-#include "../include/BalanceTable.h"
+#include "BalanceTable.h"
 
 BalanceTable::BalanceTable() {
   balances_ = new std::unordered_map<std::string, double>();

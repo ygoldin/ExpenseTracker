@@ -5,8 +5,8 @@
 #include <sstream>
 #include <unordered_set>
 #include <set>
-#include "../include/Expense.h"
-#include "../include/Utils.h"
+#include "Expense.h"
+#include "Utils.h"
 
 Expense::Expense(double cost, std::string payer, std::set<std::string> &participants)
     : Expense(cost, payer, participants, true) { }

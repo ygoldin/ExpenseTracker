@@ -4,7 +4,7 @@
 #include <iostream>
 #include <sstream>
 #include <set>
-#include "../include/Utils.h"
+#include "Utils.h"
 
 void print(std::ostream &out, const std::set<std::string> &s) {
   out << "[";

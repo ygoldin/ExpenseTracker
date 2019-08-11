@@ -13,3 +13,5 @@ add_executable(ExpenseTracker
     include/Expense.h
     include/Group.h
     include/Utils.h)
+
+include_directories(include)
