@@ -13,12 +13,9 @@ namespace ExpenseTracker {
 
     class Expense {
     public:
-        // creates an expense where the payer is involved (i.e. didn't just pay for someone else)
-        Expense(double cost, std::string payer, std::set<std::string> &participants);
-
         // creates an expense
         Expense(double cost, std::string payer, std::set<std::string> &participants,
-                bool payerInvolved);
+                bool payerInvolved = true);
 
         double Cost() const { return m_cost; }
 

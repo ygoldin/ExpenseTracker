@@ -6,9 +6,6 @@
 
 namespace ExpenseTracker {
 
-    Expense::Expense(double cost, std::string payer, std::set<std::string> &participants)
-        : Expense(cost, payer, participants, true) {}
-
     Expense::Expense(double cost, std::string payer, std::set<std::string> &participants,
                      bool payerInvolved) {
       m_cost = cost;
