@@ -25,12 +25,9 @@ namespace ExpenseTracker {
     }
 
     Group::~Group() {
-      delete members_;
-      delete expenses_;
       for (auto it = balances_->begin(); it != balances_->end(); ++it) {
         delete it->second;
       }
-      delete balances_;
     }
 
     bool Group::AddMember(std::string member) {
@@ -93,9 +90,9 @@ namespace ExpenseTracker {
 /* helpers */
 
     void Group::Setup() {
-      members_ = new std::unordered_set<std::string>();
-      expenses_ = new std::vector<Expense>();
-      balances_ = new std::unordered_map<std::string, BalanceTable *>();
+      members_ = std::make_shared<std::unordered_set<std::string>>();
+      expenses_ = std::make_shared<std::vector<Expense>>();
+      balances_ = std::make_shared<std::unordered_map<std::string, BalanceTable *>>();
     }
 
     bool Group::MemberExists(std::string member) {

@@ -1,17 +1,11 @@
 // Created by Yael Goldin
 
-#include <unordered_map>
-#include <string>
 #include "BalanceTable.h"
 
 namespace ExpenseTracker {
 
     BalanceTable::BalanceTable() {
-      balances_ = new std::unordered_map<std::string, double>();
-    }
-
-    BalanceTable::~BalanceTable() {
-      delete balances_;
+      balances_ = std::make_shared<std::unordered_map<std::string, double>>();
     }
 
     void BalanceTable::UpdateBalance(std::string person, double amount) {

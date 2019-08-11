@@ -3,10 +3,11 @@
 #ifndef EXPENSETRACKER_EXPENSE_H
 #define EXPENSETRACKER_EXPENSE_H
 
-#include <string>
-#include <set>
 #include <iostream>
+#include <memory>
+#include <set>
 #include <sstream>
+#include <string>
 
 namespace ExpenseTracker {
 
@@ -18,9 +19,6 @@ namespace ExpenseTracker {
         // creates an expense
         Expense(double cost, std::string payer, std::set<std::string> &participants,
                 bool payerInvolved);
-
-        // destructs the expense
-        ~Expense();
 
         double Cost() const { return cost_; }
 
@@ -34,7 +32,7 @@ namespace ExpenseTracker {
     private:
         double cost_;
         std::string payer_;
-        std::set<std::string> *participants_;
+        std::shared_ptr<std::set<std::string>> participants_;
         bool payer_involved_;
     };
 

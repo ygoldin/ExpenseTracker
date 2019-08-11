@@ -40,9 +40,9 @@ namespace ExpenseTracker {
         void Expenses(std::ostream &out);
 
     private:
-        std::unordered_set<std::string> *members_;
-        std::vector<Expense> *expenses_;
-        std::unordered_map<std::string, BalanceTable *> *balances_;
+        std::shared_ptr<std::unordered_set<std::string>> members_;
+        std::shared_ptr<std::vector<Expense>> expenses_;
+        std::shared_ptr<std::unordered_map<std::string, BalanceTable *>> balances_;
 
         void Setup();
 

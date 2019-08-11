@@ -1,10 +1,6 @@
 // Created by Yael Goldin
 
-#include <string>
-#include <iostream>
-#include <sstream>
 #include <unordered_set>
-#include <set>
 #include "Expense.h"
 #include "Utils.h"
 
@@ -18,11 +14,7 @@ namespace ExpenseTracker {
       cost_ = cost;
       payer_ = payer;
       payer_involved_ = payerInvolved;
-      participants_ = new std::set<std::string>(participants);
-    }
-
-    Expense::~Expense() {
-      delete participants_;
+      participants_ = std::make_shared<std::set<std::string>>(participants);
     }
 
     void Expense::Participants(std::set<std::string> *p) const {
