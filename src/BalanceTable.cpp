@@ -4,19 +4,22 @@
 #include <string>
 #include "BalanceTable.h"
 
-BalanceTable::BalanceTable() {
-  balances_ = new std::unordered_map<std::string, double>();
-}
+namespace ExpenseTracker {
 
-BalanceTable::~BalanceTable() {
-  delete balances_;
-}
+    BalanceTable::BalanceTable() {
+      balances_ = new std::unordered_map<std::string, double>();
+    }
 
-void BalanceTable::UpdateBalance(std::string person, double amount) {
-  if (!balances_->count(person)) {
-    balances_->insert({person, amount});
-  } else {
-    double total = balances_->at(person) + amount;
-    balances_->insert({person, total});
-  }
-}
+    BalanceTable::~BalanceTable() {
+      delete balances_;
+    }
+
+    void BalanceTable::UpdateBalance(std::string person, double amount) {
+      if (!balances_->count(person)) {
+        balances_->insert({person, amount});
+      } else {
+        double total = balances_->at(person) + amount;
+        balances_->insert({person, total});
+      }
+    }
+} // namespace ExpenseTracker

@@ -3,38 +3,44 @@
 #ifndef EXPENSETRACKER_EXPENSE_H
 #define EXPENSETRACKER_EXPENSE_H
 
-
 #include <string>
 #include <set>
 #include <iostream>
 #include <sstream>
 
-class Expense {
-  public:
-    // creates an expense where the payer is involved (i.e. didn't just pay for someone else)
-    Expense(double cost, std::string payer, std::set<std::string> &participants);
+namespace ExpenseTracker {
 
-    // creates an expense
-    Expense(double cost, std::string payer, std::set<std::string> &participants, bool payerInvolved);
+    class Expense {
+    public:
+        // creates an expense where the payer is involved (i.e. didn't just pay for someone else)
+        Expense(double cost, std::string payer, std::set<std::string> &participants);
 
-    // destructs the expense
-    ~Expense();
+        // creates an expense
+        Expense(double cost, std::string payer, std::set<std::string> &participants,
+                bool payerInvolved);
 
-    double Cost() const { return cost_;}
-    std::string Payer() const { return payer_; }
-    void Participants(std::set<std::string> *p) const;
+        // destructs the expense
+        ~Expense();
 
-    // returns how much each person's cost was in the expense
-    double IndividualCost() const;
+        double Cost() const { return cost_; }
 
-  private:
-    double cost_;
-    std::string payer_;
-    std::set<std::string>* participants_;
-    bool payer_involved_;
-};
+        std::string Payer() const { return payer_; }
+
+        void Participants(std::set<std::string> *p) const;
+
+        // returns how much each person's cost was in the expense
+        double IndividualCost() const;
+
+    private:
+        double cost_;
+        std::string payer_;
+        std::set<std::string> *participants_;
+        bool payer_involved_;
+    };
 
 // override ostream
-std::ostream &operator<<(std::ostream &out, const Expense &a);
+    std::ostream &operator<<(std::ostream &out, const Expense &a);
+
+} // namespace ExpenseTracker
 
 #endif //EXPENSETRACKER_EXPENSE_H

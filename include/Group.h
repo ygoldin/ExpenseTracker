@@ -13,37 +13,45 @@
 #include "BalanceTable.h"
 #include "Expense.h"
 
-class Group {
-  public:
-    Group();
-    Group(std::unordered_set<std::string> &members);
-    ~Group();
+namespace ExpenseTracker {
 
-    // adds member to group, returns true if new member
-    bool AddMember(std::string member);
+    class Group {
+    public:
+        Group();
 
-    // adds a new expense to the group
-    // returns true if payer and participants exist in the group, and there is at least
-    // one participant
-    bool AddExpense(double cost, std::string payer, std::set<std::string> &participants, bool payerInvolved);
+        Group(std::unordered_set<std::string> &members);
 
-    // removes the expense from the group
-    // returns true if expense existed
-    bool RemoveExpense(int id);
+        ~Group();
 
-    // prints all expenses to the given stream
-    void Expenses(std::ostream &out);
+        // adds member to group, returns true if new member
+        bool AddMember(std::string member);
 
-  private:
-    std::unordered_set<std::string>* members_;
-    std::vector<Expense>* expenses_;
-    std::unordered_map<std::string, BalanceTable*>* balances_;
+        // adds a new expense to the group
+        // returns true if payer and participants exist in the group, and there is at least
+        // one participant
+        bool AddExpense(double cost, std::string payer, std::set<std::string> &participants,
+                        bool payerInvolved);
 
-    void Setup();
-    bool MemberExists(std::string member);
-    void InitializeBalanceIfNeeded(std::string member);  // creates balance tables if needed
-    void UpdateBalance(std::string receiver, std::string debtor, double val);
-};
+        // removes the expense from the group
+        // returns true if expense existed
+        bool RemoveExpense(int id);
 
+        // prints all expenses to the given stream
+        void Expenses(std::ostream &out);
+
+    private:
+        std::unordered_set<std::string> *members_;
+        std::vector<Expense> *expenses_;
+        std::unordered_map<std::string, BalanceTable *> *balances_;
+
+        void Setup();
+
+        bool MemberExists(std::string member);
+
+        void InitializeBalanceIfNeeded(std::string member);  // creates balance tables if needed
+        void UpdateBalance(std::string receiver, std::string debtor, double val);
+    };
+
+} // namespace ExpenseTracker
 
 #endif //EXPENSETRACKER_GROUP_H

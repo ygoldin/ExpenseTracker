@@ -2,7 +2,9 @@
 #include <iostream>
 #include <unordered_set>
 #include <set>
-#include "include/Group.h"
+#include "Group.h"
+
+using namespace ExpenseTracker;
 
 int main() {
   std::unordered_set<std::string> people = {"A", "B", "C", "D"};
