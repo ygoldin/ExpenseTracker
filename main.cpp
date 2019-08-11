@@ -1,9 +1,6 @@
 // Created by Yael Goldin
 
 #include <assert.h>
-#include <iostream>
-#include <unordered_set>
-#include <set>
 #include "Group.h"
 
 using namespace ExpenseTracker;
