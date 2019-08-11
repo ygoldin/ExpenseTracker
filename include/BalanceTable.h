@@ -19,7 +19,7 @@ namespace ExpenseTracker {
         void UpdateBalance(std::string person, double amount);
 
     private:
-        std::shared_ptr<std::unordered_map<std::string, double>> balances_;
+        std::shared_ptr<std::unordered_map<std::string, double>> m_balances;
     };
 
 } // namespace ExpenseTracker

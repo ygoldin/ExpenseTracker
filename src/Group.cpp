@@ -77,7 +77,7 @@ namespace ExpenseTracker {
     void Group::Setup() {
       members_ = std::make_shared<std::unordered_set<std::string>>();
       expenses_ = std::make_shared<std::vector<Expense>>();
-      balances_ = std::make_shared<std::unordered_map<std::string, std::unique_ptr<BalanceTable>>>();
+      m_balances = std::make_shared<std::unordered_map<std::string, std::unique_ptr<BalanceTable>>>();
     }
 
     bool Group::MemberExists(std::string member) {
@@ -85,14 +85,14 @@ namespace ExpenseTracker {
     }
 
     void Group::InitializeBalanceIfNeeded(std::string member) {
-      if (!balances_->count(member)) {
-        balances_->insert({member, std::make_unique<BalanceTable>()});
+      if (!m_balances->count(member)) {
+        m_balances->insert({member, std::make_unique<BalanceTable>()});
       }
     }
 
     void Group::UpdateBalance(std::string receiver, std::string debtor, double val) {
-      balances_->at(receiver)->UpdateBalance(debtor, val);
-      balances_->at(debtor)->UpdateBalance(receiver, -val);
+      m_balances->at(receiver)->UpdateBalance(debtor, val);
+      m_balances->at(debtor)->UpdateBalance(receiver, -val);
     }
 
 } // namespace ExpenseTracker

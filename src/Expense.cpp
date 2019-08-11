@@ -11,24 +11,24 @@ namespace ExpenseTracker {
 
     Expense::Expense(double cost, std::string payer, std::set<std::string> &participants,
                      bool payerInvolved) {
-      cost_ = cost;
-      payer_ = payer;
-      payer_involved_ = payerInvolved;
-      participants_ = std::make_shared<std::set<std::string>>(participants);
+      m_cost = cost;
+      m_payer = payer;
+      m_payerInvolved = payerInvolved;
+      m_participants = std::make_shared<std::set<std::string>>(participants);
     }
 
     void Expense::Participants(std::set<std::string> *p) const {
-      for (auto it : *participants_) {
+      for (auto it : *m_participants) {
         p->insert(it);
       }
     }
 
     double Expense::IndividualCost() const {
-      int size = participants_->size();
-      if (payer_involved_) {
+      int size = m_participants->size();
+      if (m_payerInvolved) {
         size++;
       }
-      return cost_ / size;
+      return m_cost / size;
     }
 
     std::ostream &operator<<(std::ostream &out, const Expense &a) {

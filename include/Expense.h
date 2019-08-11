@@ -20,9 +20,9 @@ namespace ExpenseTracker {
         Expense(double cost, std::string payer, std::set<std::string> &participants,
                 bool payerInvolved);
 
-        double Cost() const { return cost_; }
+        double Cost() const { return m_cost; }
 
-        std::string Payer() const { return payer_; }
+        std::string Payer() const { return m_payer; }
 
         void Participants(std::set<std::string> *p) const;
 
@@ -30,10 +30,10 @@ namespace ExpenseTracker {
         double IndividualCost() const;
 
     private:
-        double cost_;
-        std::string payer_;
-        std::shared_ptr<std::set<std::string>> participants_;
-        bool payer_involved_;
+        double m_cost;
+        std::string m_payer;
+        std::shared_ptr<std::set<std::string>> m_participants;
+        bool m_payerInvolved;
     };
 
 // override ostream

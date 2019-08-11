@@ -35,7 +35,7 @@ namespace ExpenseTracker {
     private:
         std::shared_ptr<std::unordered_set<std::string>> members_;
         std::shared_ptr<std::vector<Expense>> expenses_;
-        std::shared_ptr<std::unordered_map<std::string, std::unique_ptr<BalanceTable>>> balances_;
+        std::shared_ptr<std::unordered_map<std::string, std::unique_ptr<BalanceTable>>> m_balances;
 
         void Setup();
 
