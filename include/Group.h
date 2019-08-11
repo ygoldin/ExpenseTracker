@@ -12,24 +12,25 @@ namespace ExpenseTracker {
 
     class Group {
     public:
-        Group();
-
+        // Creates a group with the given members
         Group(std::unordered_set<std::string> &members);
 
-        // adds member to group, returns true if new member
+        // Adds member to the group, returns true if this member is new
         bool AddMember(std::string member);
 
-        // adds a new expense to the group
-        // returns true if payer and participants exist in the group, and there is at least
-        // one participant
+        // Adds a new expense to the group
+        // Returns true if the expense was added successfully
+        // - there is at least one participant
+        // - payer and participants exist in the group
+        // - cost is positive
         bool AddExpense(double cost, std::string payer, std::set<std::string> &participants,
                         bool payerInvolved);
 
-        // removes the expense from the group
-        // returns true if expense existed
+        // Removes the expense from the group if it existed
+        // Returns true if it existed
         bool RemoveExpense(int id);
 
-        // prints all expenses to the given stream
+        // Prints all expenses to the given stream
         void Expenses(std::ostream &out);
 
     private:
@@ -37,11 +38,13 @@ namespace ExpenseTracker {
         std::shared_ptr<std::vector<Expense>> expenses_;
         std::shared_ptr<std::unordered_map<std::string, std::unique_ptr<BalanceTable>>> m_balances;
 
-        void Setup();
-
+        // Returns if the member exists in this group
         bool MemberExists(std::string member);
 
-        void InitializeBalanceIfNeeded(std::string member);  // creates balance tables if needed
+        // Creates a balance table for the member if they have never been involved in an expense
+        void InitializeBalanceIfNeeded(std::string member);
+
+        // Updates both participants' balances
         void UpdateBalance(std::string receiver, std::string debtor, double val);
     };
 

@@ -4,12 +4,10 @@
 
 namespace ExpenseTracker {
 
-    Group::Group() {
-      Setup();
-    }
-
     Group::Group(std::unordered_set<std::string> &members) {
-      Setup();
+      members_ = std::make_shared<std::unordered_set<std::string>>();
+      expenses_ = std::make_shared<std::vector<Expense>>();
+      m_balances = std::make_shared<std::unordered_map<std::string, std::unique_ptr<BalanceTable>>>();
       for (std::string m : members) {
         members_->insert(m);
       }
@@ -72,13 +70,7 @@ namespace ExpenseTracker {
       }
     }
 
-/* helpers */
-
-    void Group::Setup() {
-      members_ = std::make_shared<std::unordered_set<std::string>>();
-      expenses_ = std::make_shared<std::vector<Expense>>();
-      m_balances = std::make_shared<std::unordered_map<std::string, std::unique_ptr<BalanceTable>>>();
-    }
+    /* helpers */
 
     bool Group::MemberExists(std::string member) {
       return members_->count(member);
