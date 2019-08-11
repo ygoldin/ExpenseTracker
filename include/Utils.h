@@ -3,10 +3,10 @@
 #ifndef EXPENSETRACKER_UTILS_H
 #define EXPENSETRACKER_UTILS_H
 
-#include <string>
 #include <iostream>
-#include <sstream>
 #include <set>
+#include <sstream>
+#include <string>
 
 namespace ExpenseTracker {
 

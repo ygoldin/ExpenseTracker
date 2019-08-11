@@ -1,14 +1,5 @@
 // Created by Yael Goldin
 
-#include <string>
-#include <unordered_set>
-#include <set>
-#include <unordered_map>
-#include <vector>
-#include <iostream>
-#include <sstream>
-#include "BalanceTable.h"
-#include "Expense.h"
 #include "Group.h"
 
 namespace ExpenseTracker {

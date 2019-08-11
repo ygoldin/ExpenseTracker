@@ -3,8 +3,8 @@
 #ifndef EXPENSETRACKER_BALANCETABLE_H
 #define EXPENSETRACKER_BALANCETABLE_H
 
-#include <string>
 #include <memory>
+#include <string>
 #include <unordered_map>
 
 namespace ExpenseTracker {
