@@ -6,8 +6,6 @@
 #include <unordered_map>
 #include <string>
 
-using namespace std;
-
 // this class represents one person's current balances
 class BalanceTable {
   public:
@@ -16,10 +14,10 @@ class BalanceTable {
 
     // either creates a new balance with this person, or updates it by adding the given amount
     // positive balance means the given person owes money to the table owner
-    void UpdateBalance(string person, double amount);
+    void UpdateBalance(std::string person, double amount);
 
   private:
-    unordered_map<string, double>* balances_;
+    std::unordered_map<std::string, double>* balances_;
 };
 
 

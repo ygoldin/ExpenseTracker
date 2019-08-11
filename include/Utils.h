@@ -7,11 +7,8 @@
 #include <iostream>
 #include <sstream>
 #include <set>
-#include "Utils.h"
-
-using namespace std;
 
 // prints the unordered set to the given stream
-void print(ostream &out, const set<string> &s);
+void print(std::ostream &out, const std::set<std::string> &s);
 
 #endif //EXPENSETRACKER_UTILS_H

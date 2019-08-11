@@ -5,14 +5,14 @@
 #include "../include/BalanceTable.h"
 
 BalanceTable::BalanceTable() {
-  balances_ = new unordered_map<string, double>();
+  balances_ = new std::unordered_map<std::string, double>();
 }
 
 BalanceTable::~BalanceTable() {
   delete balances_;
 }
 
-void BalanceTable::UpdateBalance(string person, double amount) {
+void BalanceTable::UpdateBalance(std::string person, double amount) {
   if (!balances_->count(person)) {
     balances_->insert({person, amount});
   } else {

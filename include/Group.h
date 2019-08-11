@@ -13,38 +13,36 @@
 #include "BalanceTable.h"
 #include "Expense.h"
 
-using namespace std;
-
 class Group {
   public:
     Group();
-    Group(unordered_set<string> &members);
+    Group(std::unordered_set<std::string> &members);
     ~Group();
 
     // adds member to group, returns true if new member
-    bool AddMember(string member);
+    bool AddMember(std::string member);
 
     // adds a new expense to the group
     // returns true if payer and participants exist in the group, and there is at least
     // one participant
-    bool AddExpense(double cost, string payer, set<string> &participants, bool payerInvolved);
+    bool AddExpense(double cost, std::string payer, std::set<std::string> &participants, bool payerInvolved);
 
     // removes the expense from the group
     // returns true if expense existed
     bool RemoveExpense(int id);
 
     // prints all expenses to the given stream
-    void Expenses(ostream &out);
+    void Expenses(std::ostream &out);
 
   private:
-    unordered_set<string>* members_;
-    vector<Expense>* expenses_;
-    unordered_map<string, BalanceTable*>* balances_;
+    std::unordered_set<std::string>* members_;
+    std::vector<Expense>* expenses_;
+    std::unordered_map<std::string, BalanceTable*>* balances_;
 
     void Setup();
-    bool MemberExists(string member);
-    void InitializeBalanceIfNeeded(string member);  // creates balance tables if needed
-    void UpdateBalance(string receiver, string debtor, double val);
+    bool MemberExists(std::string member);
+    void InitializeBalanceIfNeeded(std::string member);  // creates balance tables if needed
+    void UpdateBalance(std::string receiver, std::string debtor, double val);
 };
 
 

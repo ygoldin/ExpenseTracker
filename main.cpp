@@ -4,16 +4,14 @@
 #include <set>
 #include "include/Group.h"
 
-using namespace std;
-
 int main() {
-  unordered_set<string> people = {"A", "B", "C", "D"};
+  std::unordered_set<std::string> people = {"A", "B", "C", "D"};
   Group g(people);
 
-  set<string> participants = {"A", "B", "C"};
+  std::set<std::string> participants = {"A", "B", "C"};
   bool expenseAdded = g.AddExpense(4, "D", participants, true);
   assert(expenseAdded);
 
-  g.Expenses(cout);
+  g.Expenses(std::cout);
   return 0;
 }

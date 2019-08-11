@@ -11,15 +11,13 @@
 #include "../include/Expense.h"
 #include "../include/Group.h"
 
-using namespace std;
-
 Group::Group() {
   Setup();
 }
 
-Group::Group(unordered_set<string> &members) {
+Group::Group(std::unordered_set<std::string> &members) {
   Setup();
-  for (string m : members) {
+  for (std::string m : members) {
     members_->insert(m);
   }
 }
@@ -33,7 +31,7 @@ Group::~Group() {
   delete balances_;
 }
 
-bool Group::AddMember(string member) {
+bool Group::AddMember(std::string member) {
   if (MemberExists(member)) {
     return false;
   }
@@ -41,11 +39,11 @@ bool Group::AddMember(string member) {
   return true;
 }
 
-bool Group::AddExpense(double cost, string payer, set<string> &participants, bool payerInvolved) {
+bool Group::AddExpense(double cost, std::string payer, std::set<std::string> &participants, bool payerInvolved) {
   if (!MemberExists(payer) || participants.empty() || cost <= 0) {
     return false;
   }
-  for (string p : participants) {
+  for (std::string p : participants) {
     if (!MemberExists(p)) {
       return false;
     }
@@ -56,7 +54,7 @@ bool Group::AddExpense(double cost, string payer, set<string> &participants, boo
 
   double individualCost = exp.IndividualCost();
   InitializeBalanceIfNeeded(payer);
-  for (string s : participants) {
+  for (std::string s : participants) {
     InitializeBalanceIfNeeded(s);
     UpdateBalance(payer, s, individualCost);
   }
@@ -70,21 +68,21 @@ bool Group::RemoveExpense(int id) {
   Expense exp = expenses_->at(id - 1);
   expenses_->erase(expenses_->begin() + id - 1);
   double individualCost = exp.IndividualCost();
-  set<string> participants;
+  std::set<std::string> participants;
   exp.Participants(&participants);
-  string payer = exp.Payer();
-  for (string s : participants) {
+  std::string payer = exp.Payer();
+  for (std::string s : participants) {
     UpdateBalance(s, payer, individualCost);
   }
   return true;
 }
 
-void Group::Expenses(ostream &out) {
+void Group::Expenses(std::ostream &out) {
   if (expenses_->empty()) {
-    out << "No expenses" << endl;
+    out << "No expenses" << std::endl;
   } else {
     for (int i = 0; i < expenses_->size(); i++) {
-      out << i + 1 << ": " << expenses_->at(i) << endl;
+      out << i + 1 << ": " << expenses_->at(i) << std::endl;
     }
   }
 }
@@ -92,23 +90,23 @@ void Group::Expenses(ostream &out) {
 /* helpers */
 
 void Group::Setup() {
-  members_ = new unordered_set<string>();
-  expenses_ = new vector<Expense>();
-  balances_ = new unordered_map<string, BalanceTable*>();
+  members_ = new std::unordered_set<std::string>();
+  expenses_ = new std::vector<Expense>();
+  balances_ = new std::unordered_map<std::string, BalanceTable*>();
 }
 
-bool Group::MemberExists(string member) {
+bool Group::MemberExists(std::string member) {
   return members_->count(member);
 }
 
-void Group::InitializeBalanceIfNeeded(string member) {
+void Group::InitializeBalanceIfNeeded(std::string member) {
   if (!balances_->count(member)) {
     BalanceTable *tbl = new BalanceTable();
     balances_->insert({member, tbl});
   }
 }
 
-void Group::UpdateBalance(string receiver, string debtor, double val) {
+void Group::UpdateBalance(std::string receiver, std::string debtor, double val) {
   balances_->at(receiver)->UpdateBalance(debtor, val);
   balances_->at(debtor)->UpdateBalance(receiver, -val);
 }

@@ -6,9 +6,7 @@
 #include <set>
 #include "../include/Utils.h"
 
-using namespace std;
-
-void print(ostream &out, const set<string> &s) {
+void print(std::ostream &out, const std::set<std::string> &s) {
   out << "[";
   if (!s.empty()) {
     auto it = s.begin();
