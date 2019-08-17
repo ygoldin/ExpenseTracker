@@ -12,3 +12,6 @@ cmake-build-debug/
 
 # builds
 build*/
+
+#VS Code files
+.vscode/
