@@ -24,4 +24,8 @@ namespace ExpenseTracker
             return 0;
         }
     }
+
+    std::unordered_map<std::string, double> BalanceTable::GetAllBalances() const {
+        return *m_balances;
+    }
 } // namespace ExpenseTracker

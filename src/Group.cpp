@@ -70,6 +70,16 @@ namespace ExpenseTracker
         return expenses;
     }
 
+    std::optional<std::unordered_map<std::string, double>> Group::Balances(std::string member) {
+        if (!MemberExists(member)) {
+            return std::nullopt;
+        } else if (m_balances->empty() || !m_balances->count(member)) {
+            return std::unordered_map<std::string, double>();
+        } else {
+            return m_balances->at(member)->GetAllBalances();
+        }
+    }
+
     /* helpers */
 
     bool Group::MemberExists(std::string member) { return m_members->count(member); }

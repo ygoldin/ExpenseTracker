@@ -21,6 +21,10 @@ namespace ExpenseTracker
         // A positive balance means the given person owes money to the table owner
         double GetBalance(std::string person) const;
 
+        // Returns all current balances
+        // A positive balance with another member means they owe money to the table
+        std::unordered_map<std::string, double> GetAllBalances() const;
+
       private:
         std::unique_ptr<std::unordered_map<std::string, double>> m_balances;
     };

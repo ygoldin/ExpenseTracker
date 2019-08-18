@@ -7,6 +7,7 @@
 #include "Expense.h"
 
 #include <map>
+#include <optional>
 #include <unordered_set>
 #include <vector>
 
@@ -34,6 +35,10 @@ namespace ExpenseTracker
 
         // Returns all the expenses in order
         std::map<uint32_t, Expense> Expenses();
+
+        // Returns all of the balances for this member (or nullopt if they aren't in the group)
+        // Positive balances means other members owe money to this one
+        std::optional<std::unordered_map<std::string, double>> Balances(std::string member);
 
       private:
         std::shared_ptr<std::unordered_set<std::string>> m_members;
