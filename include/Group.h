@@ -35,8 +35,8 @@ namespace ExpenseTracker
         void Expenses(std::ostream& out);
 
       private:
-        std::shared_ptr<std::unordered_set<std::string>> members_;
-        std::shared_ptr<std::vector<Expense>> expenses_;
+        std::shared_ptr<std::unordered_set<std::string>> m_members;
+        std::shared_ptr<std::vector<Expense>> m_expenses;
         std::shared_ptr<std::unordered_map<std::string, std::unique_ptr<BalanceTable>>> m_balances;
 
         // Returns if the member exists in this group

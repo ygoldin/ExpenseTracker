@@ -5,12 +5,12 @@
 namespace ExpenseTracker
 {
     Group::Group(std::unordered_set<std::string>& members) {
-        members_ = std::make_shared<std::unordered_set<std::string>>();
-        expenses_ = std::make_shared<std::vector<Expense>>();
+        m_members = std::make_shared<std::unordered_set<std::string>>();
+        m_expenses = std::make_shared<std::vector<Expense>>();
         m_balances =
             std::make_shared<std::unordered_map<std::string, std::unique_ptr<BalanceTable>>>();
         for (std::string m : members) {
-            members_->insert(m);
+            m_members->insert(m);
         }
     }
 
@@ -18,7 +18,7 @@ namespace ExpenseTracker
         if (MemberExists(member)) {
             return false;
         }
-        members_->insert(member);
+        m_members->insert(member);
         return true;
     }
 
@@ -34,7 +34,7 @@ namespace ExpenseTracker
         }
 
         Expense exp(cost, payer, participants, payerInvolved);
-        expenses_->push_back(exp);
+        m_expenses->push_back(exp);
 
         double individualCost = exp.IndividualCost();
         InitializeBalanceIfNeeded(payer);
@@ -46,11 +46,11 @@ namespace ExpenseTracker
     }
 
     bool Group::RemoveExpense(int id) {
-        if (id <= 0 || id >= expenses_->size()) {
+        if (id <= 0 || id >= m_expenses->size()) {
             return false;
         }
-        Expense exp = expenses_->at(id - 1);
-        expenses_->erase(expenses_->begin() + id - 1);
+        Expense exp = m_expenses->at(id - 1);
+        m_expenses->erase(m_expenses->begin() + id - 1);
         double individualCost = exp.IndividualCost();
         auto participants = exp.Participants();
         std::string payer = exp.Payer();
@@ -61,18 +61,18 @@ namespace ExpenseTracker
     }
 
     void Group::Expenses(std::ostream& out) {
-        if (expenses_->empty()) {
+        if (m_expenses->empty()) {
             out << "No expenses" << std::endl;
         } else {
-            for (int i = 0; i < expenses_->size(); i++) {
-                out << i + 1 << ": " << expenses_->at(i) << std::endl;
+            for (int i = 0; i < m_expenses->size(); i++) {
+                out << i + 1 << ": " << m_expenses->at(i) << std::endl;
             }
         }
     }
 
     /* helpers */
 
-    bool Group::MemberExists(std::string member) { return members_->count(member); }
+    bool Group::MemberExists(std::string member) { return m_members->count(member); }
 
     void Group::InitializeBalanceIfNeeded(std::string member) {
         if (!m_balances->count(member)) {
