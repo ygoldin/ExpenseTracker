@@ -5,7 +5,7 @@
 namespace ExpenseTracker
 {
     BalanceTable::BalanceTable() {
-        m_balances = std::make_shared<std::unordered_map<std::string, double>>();
+        m_balances = std::make_unique<std::unordered_map<std::string, double>>();
     }
 
     void BalanceTable::UpdateBalance(std::string person, double amount) {

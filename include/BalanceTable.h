@@ -22,7 +22,7 @@ namespace ExpenseTracker
         double GetBalance(std::string person) const;
 
       private:
-        std::shared_ptr<std::unordered_map<std::string, double>> m_balances;
+        std::unique_ptr<std::unordered_map<std::string, double>> m_balances;
     };
 
 } // namespace ExpenseTracker
