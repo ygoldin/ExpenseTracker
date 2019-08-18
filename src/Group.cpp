@@ -60,14 +60,14 @@ namespace ExpenseTracker
         return true;
     }
 
-    void Group::Expenses(std::ostream& out) {
-        if (m_expenses->empty()) {
-            out << "No expenses" << std::endl;
-        } else {
-            for (int i = 0; i < m_expenses->size(); i++) {
-                out << i + 1 << ": " << m_expenses->at(i) << std::endl;
-            }
+    std::map<uint32_t, Expense> Group::Expenses() {
+        std::map<uint32_t, Expense> expenses;
+        uint32_t id = 1;
+        for (Expense e : *m_expenses) {
+            expenses.insert({id, e});
+            id++;
         }
+        return expenses;
     }
 
     /* helpers */

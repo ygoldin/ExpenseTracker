@@ -10,10 +10,8 @@ add_executable(ExpenseTracker
     src/BalanceTable.cpp
     src/Expense.cpp
     src/Group.cpp
-    src/Utils.cpp
     include/BalanceTable.h
     include/Expense.h
-    include/Group.h
-    include/Utils.h)
+    include/Group.h)
 
 include_directories(include)

@@ -3,10 +3,8 @@
 #ifndef EXPENSETRACKER_EXPENSE_H
 #define EXPENSETRACKER_EXPENSE_H
 
-#include <iostream>
 #include <memory>
 #include <set>
-#include <sstream>
 #include <string>
 
 namespace ExpenseTracker
@@ -35,9 +33,6 @@ namespace ExpenseTracker
         std::shared_ptr<std::set<std::string>> m_participants;
         bool m_payerInvolved;
     };
-
-    // override ostream
-    std::ostream& operator<<(std::ostream& out, const Expense& a);
 
 } // namespace ExpenseTracker
 

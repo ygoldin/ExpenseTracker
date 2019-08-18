@@ -2,8 +2,6 @@
 
 #include "Expense.h"
 
-#include "Utils.h"
-
 #include <unordered_set>
 
 namespace ExpenseTracker
@@ -25,14 +23,6 @@ namespace ExpenseTracker
 
     std::set<std::string> Expense::Participants() const {
         return std::set<std::string>(*m_participants);
-    }
-
-    std::ostream& operator<<(std::ostream& out, const Expense& a) {
-        out << a.Payer() << " paid " << a.Cost() << ". ";
-        auto participants = a.Participants();
-        print(out, participants);
-        out << " owe " << a.IndividualCost() << " each";
-        return out;
     }
 
 } // namespace ExpenseTracker

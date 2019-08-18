@@ -6,6 +6,7 @@
 #include "BalanceTable.h"
 #include "Expense.h"
 
+#include <map>
 #include <unordered_set>
 #include <vector>
 
@@ -31,8 +32,8 @@ namespace ExpenseTracker
         // Returns true if it existed
         bool RemoveExpense(int id);
 
-        // Prints all expenses to the given stream
-        void Expenses(std::ostream& out);
+        // Returns all the expenses in order
+        std::map<uint32_t, Expense> Expenses();
 
       private:
         std::shared_ptr<std::unordered_set<std::string>> m_members;
