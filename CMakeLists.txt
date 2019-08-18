@@ -5,13 +5,5 @@ project(ExpenseTracker)
 
 set(CMAKE_CXX_STANDARD 17)
 
-add_executable(ExpenseTracker
-    main.cpp
-    src/BalanceTable.cpp
-    src/Expense.cpp
-    src/Group.cpp
-    include/BalanceTable.h
-    include/Expense.h
-    include/Group.h)
-
-include_directories(include)
+add_subdirectory(lib)
+add_subdirectory(test)
