@@ -46,7 +46,7 @@ namespace ExpenseTracker
     }
 
     bool Group::RemoveExpense(int id) {
-        if (id <= 0 || id >= m_expenses->size()) {
+        if (id <= 0 || id > m_expenses->size()) {
             return false;
         }
         Expense exp = m_expenses->at(id - 1);
