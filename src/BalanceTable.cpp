@@ -9,11 +9,17 @@ namespace ExpenseTracker
     }
 
     void BalanceTable::UpdateBalance(std::string person, double amount) {
-        if (!m_balances->count(person)) {
-            m_balances->insert({person, amount});
-        } else {
-            double total = m_balances->at(person) + amount;
-            m_balances->insert({person, total});
+        if (amount != 0) {
+            if (!m_balances->count(person)) {
+                m_balances->insert({person, amount});
+            } else {
+                double total = m_balances->at(person) + amount;
+                if (total == 0) {
+                    m_balances->erase(person);
+                } else {
+                    m_balances->insert({person, total});
+                }
+            }
         }
     }
 
