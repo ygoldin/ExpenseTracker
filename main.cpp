@@ -23,11 +23,19 @@ int main() {
     std::unordered_set<std::string> people = {"A", "B", "C", "D"};
     Group g(people);
 
-    std::unordered_set<std::string> participants = {"A", "B", "C"};
-    bool expenseAdded = g.AddExpense(4, "D", participants, true);
+    std::unordered_set<std::string> participants1 = {"A", "B", "C"};
+    bool expenseAdded = g.AddExpense(4, "D", participants1, true);
     assert(expenseAdded);
-
     printGroup(g);
+
+    std::unordered_set<std::string> participants2 = {"D"};
+    expenseAdded = g.AddExpense(2, "A", participants2, true);
+    assert(expenseAdded);
+    printGroup(g);
+
+    g.RemoveExpense(1);
+    printGroup(g);
+
     return 0;
 }
 
@@ -35,6 +43,7 @@ static void printGroup(Group& g) {
     printMembers(g);
     printExpenses(g);
     printBalances(g);
+    std::cout << std::endl;
 }
 
 static void printMembers(Group& g) {
