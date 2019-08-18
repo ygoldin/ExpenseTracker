@@ -33,7 +33,8 @@ int main() {
     assert(expenseAdded);
     printGroup(g);
 
-    g.RemoveExpense(1);
+    bool expenseRemoved = g.RemoveExpense(1);
+    assert(expenseRemoved);
     printGroup(g);
 
     return 0;
