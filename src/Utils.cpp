@@ -2,9 +2,9 @@
 
 #include "Utils.h"
 
-namespace ExpenseTracker {
-
-    void print(std::ostream &out, const std::set<std::string> &s) {
+namespace ExpenseTracker
+{
+    void print(std::ostream& out, const std::set<std::string>& s) {
         out << "[";
         if (!s.empty()) {
             auto it = s.begin();

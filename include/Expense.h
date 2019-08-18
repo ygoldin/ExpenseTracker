@@ -9,12 +9,12 @@
 #include <sstream>
 #include <string>
 
-namespace ExpenseTracker {
-
+namespace ExpenseTracker
+{
     class Expense {
-    public:
+      public:
         // Creates an expense
-        Expense(double cost, std::string payer, std::set<std::string> &participants,
+        Expense(double cost, std::string payer, std::set<std::string>& participants,
                 bool payerInvolved = true);
 
         // Returns how much each person's cost was in the expense
@@ -29,7 +29,7 @@ namespace ExpenseTracker {
         // Returns who paid
         std::string Payer() const { return m_payer; }
 
-    private:
+      private:
         double m_cost;
         std::string m_payer;
         std::shared_ptr<std::set<std::string>> m_participants;
@@ -37,8 +37,8 @@ namespace ExpenseTracker {
     };
 
     // override ostream
-    std::ostream &operator<<(std::ostream &out, const Expense &a);
+    std::ostream& operator<<(std::ostream& out, const Expense& a);
 
 } // namespace ExpenseTracker
 
-#endif //EXPENSETRACKER_EXPENSE_H
+#endif // EXPENSETRACKER_EXPENSE_H

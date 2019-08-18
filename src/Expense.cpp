@@ -1,14 +1,18 @@
 // Created by Yael Goldin
 
-#include <unordered_set>
 #include "Expense.h"
+
 #include "Utils.h"
 
-namespace ExpenseTracker {
+#include <unordered_set>
 
-    Expense::Expense(double cost, std::string payer, std::set<std::string> &participants,
-                     bool payerInvolved) : m_cost(cost), m_payer(payer), m_payerInvolved(payerInvolved) {
-        m_participants = std::make_shared<std::set<std::string>>(participants);
+namespace ExpenseTracker
+{
+    Expense::Expense(double cost, std::string payer, std::set<std::string>& participants,
+                     bool payerInvolved)
+        : m_cost(cost), m_payer(payer), m_payerInvolved(payerInvolved) {
+        m_participants =
+            std::make_shared<std::set<std::string>>(participants); // fffffffffffffffffffffff
     }
 
     double Expense::IndividualCost() const {
@@ -23,7 +27,7 @@ namespace ExpenseTracker {
         return std::set<std::string>(*m_participants);
     }
 
-    std::ostream &operator<<(std::ostream &out, const Expense &a) {
+    std::ostream& operator<<(std::ostream& out, const Expense& a) {
         out << a.Payer() << " paid " << a.Cost() << ". ";
         auto participants = a.Participants();
         print(out, participants);

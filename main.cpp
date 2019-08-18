@@ -1,7 +1,8 @@
 // Created by Yael Goldin
 
-#include <assert.h>
 #include "Group.h"
+
+#include <assert.h>
 
 using namespace ExpenseTracker;
 

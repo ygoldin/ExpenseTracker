@@ -3,17 +3,18 @@
 #ifndef EXPENSETRACKER_GROUP_H
 #define EXPENSETRACKER_GROUP_H
 
-#include <unordered_set>
-#include <vector>
 #include "BalanceTable.h"
 #include "Expense.h"
 
-namespace ExpenseTracker {
+#include <unordered_set>
+#include <vector>
 
+namespace ExpenseTracker
+{
     class Group {
-    public:
+      public:
         // Creates a group with the given members
-        Group(std::unordered_set<std::string> &members);
+        Group(std::unordered_set<std::string>& members);
 
         // Adds member to the group, returns true if this member is new
         bool AddMember(std::string member);
@@ -23,7 +24,7 @@ namespace ExpenseTracker {
         // - there is at least one participant
         // - payer and participants exist in the group
         // - cost is positive
-        bool AddExpense(double cost, std::string payer, std::set<std::string> &participants,
+        bool AddExpense(double cost, std::string payer, std::set<std::string>& participants,
                         bool payerInvolved);
 
         // Removes the expense from the group if it existed
@@ -31,9 +32,9 @@ namespace ExpenseTracker {
         bool RemoveExpense(int id);
 
         // Prints all expenses to the given stream
-        void Expenses(std::ostream &out);
+        void Expenses(std::ostream& out);
 
-    private:
+      private:
         std::shared_ptr<std::unordered_set<std::string>> members_;
         std::shared_ptr<std::vector<Expense>> expenses_;
         std::shared_ptr<std::unordered_map<std::string, std::unique_ptr<BalanceTable>>> m_balances;
@@ -50,4 +51,4 @@ namespace ExpenseTracker {
 
 } // namespace ExpenseTracker
 
-#endif //EXPENSETRACKER_GROUP_H
+#endif // EXPENSETRACKER_GROUP_H

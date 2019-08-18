@@ -2,12 +2,13 @@
 
 #include "Group.h"
 
-namespace ExpenseTracker {
-
-    Group::Group(std::unordered_set<std::string> &members) {
+namespace ExpenseTracker
+{
+    Group::Group(std::unordered_set<std::string>& members) {
         members_ = std::make_shared<std::unordered_set<std::string>>();
         expenses_ = std::make_shared<std::vector<Expense>>();
-        m_balances = std::make_shared<std::unordered_map<std::string, std::unique_ptr<BalanceTable>>>();
+        m_balances =
+            std::make_shared<std::unordered_map<std::string, std::unique_ptr<BalanceTable>>>();
         for (std::string m : members) {
             members_->insert(m);
         }
@@ -21,7 +22,7 @@ namespace ExpenseTracker {
         return true;
     }
 
-    bool Group::AddExpense(double cost, std::string payer, std::set<std::string> &participants,
+    bool Group::AddExpense(double cost, std::string payer, std::set<std::string>& participants,
                            bool payerInvolved) {
         if (!MemberExists(payer) || participants.empty() || cost <= 0) {
             return false;
@@ -59,7 +60,7 @@ namespace ExpenseTracker {
         return true;
     }
 
-    void Group::Expenses(std::ostream &out) {
+    void Group::Expenses(std::ostream& out) {
         if (expenses_->empty()) {
             out << "No expenses" << std::endl;
         } else {
@@ -71,9 +72,7 @@ namespace ExpenseTracker {
 
     /* helpers */
 
-    bool Group::MemberExists(std::string member) {
-        return members_->count(member);
-    }
+    bool Group::MemberExists(std::string member) { return members_->count(member); }
 
     void Group::InitializeBalanceIfNeeded(std::string member) {
         if (!m_balances->count(member)) {

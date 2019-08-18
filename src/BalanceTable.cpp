@@ -2,8 +2,8 @@
 
 #include "BalanceTable.h"
 
-namespace ExpenseTracker {
-
+namespace ExpenseTracker
+{
     BalanceTable::BalanceTable() {
         m_balances = std::make_shared<std::unordered_map<std::string, double>>();
     }
