@@ -12,13 +12,13 @@ static void printGroup(Group& g);
 // prints the info of a single expense to stdout
 static void printSingleExpense(uint32_t id, const Expense& e);
 // returns a string representation of the set
-static std::string setString(const std::set<std::string>& set);
+static std::string setString(const std::unordered_set<std::string>& set);
 
 int main() {
     std::unordered_set<std::string> people = {"A", "B", "C", "D"};
     Group g(people);
 
-    std::set<std::string> participants = {"A", "B", "C"};
+    std::unordered_set<std::string> participants = {"A", "B", "C"};
     bool expenseAdded = g.AddExpense(4, "D", participants, true);
     assert(expenseAdded);
 
@@ -37,7 +37,7 @@ static void printGroup(Group& g) {
     }
 }
 
-static std::string setString(const std::set<std::string>& set) {
+static std::string setString(const std::unordered_set<std::string>& set) {
     std::string result("[");
     if (!set.empty()) {
         for (auto const& s : set) {

@@ -29,7 +29,7 @@ namespace ExpenseTracker
         // - there is at least one participant
         // - payer and participants exist in the group
         // - cost is positive
-        bool AddExpense(double cost, std::string payer, std::set<std::string>& participants,
+        bool AddExpense(double cost, std::string payer, std::unordered_set<std::string>& participants,
                         bool payerInvolved);
 
         // Removes the expense from the group if it existed

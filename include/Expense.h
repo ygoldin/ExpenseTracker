@@ -4,22 +4,22 @@
 #define EXPENSETRACKER_EXPENSE_H
 
 #include <memory>
-#include <set>
 #include <string>
+#include <unordered_set>
 
 namespace ExpenseTracker
 {
     class Expense {
       public:
         // Creates an expense
-        Expense(double cost, std::string payer, std::set<std::string>& participants,
+        Expense(double cost, std::string payer, std::unordered_set<std::string>& participants,
                 bool payerInvolved = true);
 
         // Returns how much each person's cost was in the expense
         double IndividualCost() const;
 
         // Returns the participants
-        std::set<std::string> Participants() const;
+        std::unordered_set<std::string> Participants() const;
 
         // Returns how much was paid
         double Cost() const { return m_cost; }
@@ -30,7 +30,7 @@ namespace ExpenseTracker
       private:
         double m_cost;
         std::string m_payer;
-        std::shared_ptr<std::set<std::string>> m_participants;
+        std::shared_ptr<std::unordered_set<std::string>> m_participants;
         bool m_payerInvolved;
     };
 
