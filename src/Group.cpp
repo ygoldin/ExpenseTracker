@@ -22,8 +22,8 @@ namespace ExpenseTracker
         return true;
     }
 
-    bool Group::AddExpense(double cost, std::string payer, std::unordered_set<std::string>& participants,
-                           bool payerInvolved) {
+    bool Group::AddExpense(double cost, std::string payer,
+                           std::unordered_set<std::string>& participants, bool payerInvolved) {
         if (!MemberExists(payer) || participants.empty() || cost <= 0) {
             return false;
         }

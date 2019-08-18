@@ -22,15 +22,15 @@ namespace ExpenseTracker
         bool AddMember(std::string member);
 
         // Returns all the members' names
-        std::unordered_set<std::string> Members() const {return *m_members;};
+        std::unordered_set<std::string> Members() const { return *m_members; };
 
         // Adds a new expense to the group
         // Returns true if the expense was added successfully
         // - there is at least one participant
         // - payer and participants exist in the group
         // - cost is positive
-        bool AddExpense(double cost, std::string payer, std::unordered_set<std::string>& participants,
-                        bool payerInvolved);
+        bool AddExpense(double cost, std::string payer,
+                        std::unordered_set<std::string>& participants, bool payerInvolved);
 
         // Removes the expense from the group if it existed
         // Returns true if it existed

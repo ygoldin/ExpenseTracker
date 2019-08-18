@@ -7,8 +7,7 @@ namespace ExpenseTracker
     Expense::Expense(double cost, std::string payer, std::unordered_set<std::string>& participants,
                      bool payerInvolved)
         : m_cost(cost), m_payer(payer), m_payerInvolved(payerInvolved) {
-        m_participants =
-            std::make_shared<std::unordered_set<std::string>>(participants); // fffffffffffffffffffffff
+        m_participants = std::make_shared<std::unordered_set<std::string>>(participants);
     }
 
     double Expense::IndividualCost() const {
