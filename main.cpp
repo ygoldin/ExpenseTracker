@@ -9,8 +9,8 @@ using namespace ExpenseTracker;
 
 // prints all of the group's info to stdout
 static void printGroup(Group& g);
-// prints the info of a single expense to stdout
-static void printSingleExpense(uint32_t id, const Expense& e);
+// prints the info of a the group's expenses to stdout
+static void printExpenses(Group& g);
 // returns a string representation of the set
 static std::string setString(const std::unordered_set<std::string>& set);
 
@@ -26,13 +26,19 @@ int main() {
     return 0;
 }
 
-static void printGroup(Group& g) {
+static void printGroup(Group& g) { printExpenses(g); }
+
+static void printExpenses(Group& g) {
     auto expenses = g.Expenses();
     if (expenses.empty()) {
         std::cout << "No expenses" << std::endl;
     } else {
+        std::cout << "Expenses:" << std::endl;
         for (auto const& pair : expenses) {
-            printSingleExpense(pair.first, pair.second);
+            const Expense& e = pair.second;
+            std::cout << " " << pair.first << ": " << e.Payer() << " paid " << e.Cost() << ". "
+                      << setString(e.Participants()) << " owe " << e.IndividualCost() << " each"
+                      << std::endl;
         }
     }
 }
@@ -47,11 +53,4 @@ static std::string setString(const std::unordered_set<std::string>& set) {
     }
     result += "]";
     return result;
-}
-
-static void printSingleExpense(uint32_t id, const Expense& e) {
-    std::cout << id << ": ";
-    std::cout << e.Payer() << " paid " << e.Cost() << ". ";
-    std::cout << setString(e.Participants()) << " owe " << e.IndividualCost() << " each"
-              << std::endl;
 }
