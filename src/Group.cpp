@@ -60,7 +60,7 @@ namespace ExpenseTracker
         return true;
     }
 
-    std::map<uint32_t, Expense> Group::Expenses() {
+    std::map<uint32_t, Expense> Group::Expenses() const {
         std::map<uint32_t, Expense> expenses;
         uint32_t id = 1;
         for (Expense e : *m_expenses) {
@@ -70,7 +70,8 @@ namespace ExpenseTracker
         return expenses;
     }
 
-    std::optional<std::unordered_map<std::string, double>> Group::Balances(std::string member) {
+    std::optional<std::unordered_map<std::string, double>>
+        Group::Balances(std::string member) const {
         if (!MemberExists(member)) {
             return std::nullopt;
         } else if (m_balances->empty() || !m_balances->count(member)) {
@@ -82,7 +83,7 @@ namespace ExpenseTracker
 
     /* helpers */
 
-    bool Group::MemberExists(std::string member) { return m_members->count(member); }
+    bool Group::MemberExists(std::string member) const { return m_members->count(member); }
 
     void Group::InitializeBalanceIfNeeded(std::string member) {
         if (!m_balances->count(member)) {

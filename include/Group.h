@@ -34,11 +34,11 @@ namespace ExpenseTracker
         bool RemoveExpense(int id);
 
         // Returns all the expenses in order
-        std::map<uint32_t, Expense> Expenses();
+        std::map<uint32_t, Expense> Expenses() const;
 
         // Returns all of the balances for this member (or nullopt if they aren't in the group)
         // Positive balances means other members owe money to this one
-        std::optional<std::unordered_map<std::string, double>> Balances(std::string member);
+        std::optional<std::unordered_map<std::string, double>> Balances(std::string member) const;
 
       private:
         std::shared_ptr<std::unordered_set<std::string>> m_members;
@@ -46,7 +46,7 @@ namespace ExpenseTracker
         std::shared_ptr<std::unordered_map<std::string, std::unique_ptr<BalanceTable>>> m_balances;
 
         // Returns if the member exists in this group
-        bool MemberExists(std::string member);
+        bool MemberExists(std::string member) const;
 
         // Creates a balance table for the member if they have never been involved in an expense
         void InitializeBalanceIfNeeded(std::string member);
