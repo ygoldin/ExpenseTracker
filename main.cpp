@@ -4,11 +4,14 @@
 
 #include <assert.h>
 #include <iostream>
+#include <set>
 
 using namespace ExpenseTracker;
 
 // prints all of the group's info to stdout
 static void printGroup(Group& g);
+// prints all of the group's members to stdout
+static void printMembers(Group& g);
 // prints the info of a the group's expenses to stdout
 static void printExpenses(Group& g);
 // returns a string representation of the set
@@ -26,7 +29,19 @@ int main() {
     return 0;
 }
 
-static void printGroup(Group& g) { printExpenses(g); }
+static void printGroup(Group& g) {
+    printMembers(g);
+    printExpenses(g);
+}
+
+static void printMembers(Group& g) {
+    auto members = g.Members();
+    if (members.empty()) {
+        std::cout << "No members" << std::endl;
+    } else {
+        std::cout << "Members: " << setString(members) << std::endl;
+    }
+}
 
 static void printExpenses(Group& g) {
     auto expenses = g.Expenses();
@@ -46,7 +61,11 @@ static void printExpenses(Group& g) {
 static std::string setString(const std::unordered_set<std::string>& set) {
     std::string result("[");
     if (!set.empty()) {
+        std::set<std::string> ordered;
         for (auto const& s : set) {
+            ordered.insert(s);
+        }
+        for (auto const& s : ordered) {
             result += s + ",";
         }
         result.pop_back();
