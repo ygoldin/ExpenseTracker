@@ -14,6 +14,8 @@ static void printGroup(Group& g);
 static void printMembers(Group& g);
 // prints the info of a the group's expenses to stdout
 static void printExpenses(Group& g);
+// prints all of the group's balances to stdout
+static void printBalances(Group& g);
 // returns a string representation of the set
 static std::string setString(const std::unordered_set<std::string>& set);
 
@@ -32,6 +34,7 @@ int main() {
 static void printGroup(Group& g) {
     printMembers(g);
     printExpenses(g);
+    printBalances(g);
 }
 
 static void printMembers(Group& g) {
@@ -54,6 +57,29 @@ static void printExpenses(Group& g) {
             std::cout << " " << pair.first << ": " << e.Payer() << " paid " << e.Cost() << ". "
                       << setString(e.Participants()) << " owe " << e.IndividualCost() << " each"
                       << std::endl;
+        }
+    }
+}
+
+static void printBalances(Group& g) {
+    std::cout << "Balances: " << std::endl;
+    auto members = g.Members();
+    for (std::string s : members) {
+        std::cout << " " << s << ":";
+        auto balancesOpt = g.Balances(s);
+        assert(balancesOpt.has_value());
+        auto balances = balancesOpt.value();
+        if (balances.empty()) {
+            std::cout << " none" << std::endl;
+        } else {
+            std::cout << std::endl;
+            for (auto info : balances) {
+                if (info.second < 0) {
+                    std::cout << "  owes " << -info.second << " to " << info.first << std::endl;
+                } else {
+                    std::cout << "  is owed " << info.second << " by " << info.first << std::endl;
+                }
+            }
         }
     }
 }
